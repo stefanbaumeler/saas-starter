@@ -1,0 +1,15 @@
+{
+    "name": "@saas-starter/ui",
+    "main": "./dist/src/",
+    "module": "./dist/src/",
+    "types": "./dist/src/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        "./*": {
+            "development": "./src/ui/*.tsx",
+            "import": "./dist/src/ui/*",
+            "default": "./dist/src/ui/*",
+            "types": "./dist/src/ui/*"
+        }
+    }
+}

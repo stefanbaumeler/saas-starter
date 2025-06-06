@@ -1,0 +1,16 @@
+{
+    "extends": "../../../tsconfig.lib.json",
+    "compilerOptions": {
+        "rootDir": ".",
+        "outDir": "dist",
+        "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo"
+    },
+    "references": [
+        {
+            "path": "../db"
+        },
+        {
+            "path": "../id"
+        }
+    ]
+}

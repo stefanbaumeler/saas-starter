@@ -1,0 +1,42 @@
+{
+    "name": "@saas-starter/db",
+    "private": true,
+    "main": "./dist/src/index.js",
+    "module": "./dist/src/index.js",
+    "types": "./dist/src/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "development": "./src/index.ts",
+            "types": "./dist/src/index.d.ts",
+            "import": "./dist/src/index.js",
+            "default": "./dist/src/index.js"
+        }
+    },
+    "nx": {
+        "targets": {
+            "drop": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "drizzle-kit drop",
+                    "cwd": "{projectRoot}"
+                }
+            },
+            "generate": {
+                "executor": "nx:run-commands",
+                "cache": true,
+                "options": {
+                    "command": "drizzle-kit generate",
+                    "cwd": "{projectRoot}"
+                }
+            },
+            "migrate": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "command": "drizzle-kit migrate",
+                    "cwd": "{projectRoot}"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "files": [],
+    "include": [],
+    "references": [
+        {
+            "path": "../../libs/api/db"
+        },
+        {
+            "path": "../../libs/api/auth"
+        },
+        {
+            "path": "../../libs/api/mail"
+        },
+        {
+            "path": "../../libs/api/i18n"
+        },
+        {
+            "path": "../../libs/api/id"
+        },
+        {
+            "path": "./tsconfig.app.json"
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Example {
+  id: String!
+}
+
+type User {
+  id: String!
+  email: String!
+  emailVerified: Boolean!
+  image: String!
+  createdAt: String!
+  updatedAt: String!
+  role: String!
+  twoFactorEnabled: String!
+}
+
+type Session {
+  id: String!
+  expiresAt: String!
+  token: String!
+  createdAt: String!
+  updatedAt: DateTime!
+  ipAddress: String!
+  userAgent: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  backupCodes(id: String!): [String!]!
+  user(id: String!): User!
+  examples: [Example!]!
+  example(id: String!): Example!
+}
+
+type Mutation {
+  deleteUser(ids: [String!]!): [User!]!
+  updateUser(id: String!): User!
+  createUser: User!
+  deleteExample(ids: [String!]!): [Example!]!
+  updateExample(id: String!): Example!
+  createExample: Example!
+}

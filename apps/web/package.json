@@ -1,0 +1,65 @@
+{
+    "name": "@saas-starter/web",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "@saas-starter/schema": "*"
+    },
+    "nx": {
+        "projectType": "application",
+        "targets": {
+            "dev": {
+                "defaultConfiguration": "http",
+                "executor": "nx:run-commands",
+                "dependsOn": [
+                    "^build"
+                ],
+                "configurations": {
+                    "http": {
+                        "cwd": "{projectRoot}",
+                        "command": "next dev"
+                    },
+                    "https": {
+                        "cwd": "{projectRoot}",
+                        "command": "next dev --experimental-https --experimental-https-cert ../api/certificates/cert.pem --experimental-https-key ../api/certificates/key.pem --experimental-https-ca ../api/certificates/rootCA.pem"
+                    }
+                }
+            },
+            "build": {
+                "dependsOn": [
+                    "^build"
+                ],
+                "cache": true,
+                "inputs": [
+                    "default",
+                    "^production",
+                    {
+                        "externalDependencies": [
+                            "next"
+                        ]
+                    }
+                ],
+                "outputs": [
+                    "{projectRoot}/.next",
+                    "{projectRoot}/.next/!(cache)"
+                ],
+                "executor": "nx:run-commands",
+                "options": {
+                    "cwd": "{projectRoot}",
+                    "tty": false,
+                    "command": "next build"
+                }
+            },
+            "start": {
+                "dependsOn": [
+                    "build"
+                ],
+                "executor": "nx:run-commands",
+                "options": {
+                    "cwd": "{projectRoot}",
+                    "command": "next start"
+                }
+            }
+        }
+    }
+}

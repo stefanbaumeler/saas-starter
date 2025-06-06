@@ -1,0 +1,24 @@
+{
+    "name": "@saas-starter/schema",
+    "exports": {
+        "./web": {
+            "default": "./src/web.ts"
+        },
+        "./api": {
+            "default": "./src/api.ts"
+        },
+        ".": {
+            "default": "./src/index.ts"
+        }
+    },
+    "nx": {
+        "targets": {
+            "dev": {
+                "executor": "@nx-tools/nx-graphql-codegen:generate",
+                "options": {
+                    "config": "libs/shared/schema/src/codegen.ts"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,75 @@
+{
+    "name": "@saas-starter/api",
+    "version": "0.0.1",
+    "private": true,
+    "nx": {
+        "targets": {
+            "build": {
+                "cache": true,
+                "dependsOn": [
+                    "^build"
+                ],
+                "inputs": [
+                    "production",
+                    "^production",
+                    {
+                        "externalDependencies": [
+                            "webpack-cli"
+                        ]
+                    }
+                ],
+                "outputs": [
+                    "{projectRoot}/dist"
+                ],
+                "syncGenerators": [
+                    "@nx/js:typescript-sync"
+                ],
+                "executor": "nx:run-commands",
+                "options": {
+                    "cwd": "{projectRoot}",
+                    "args": [
+                        "node-env=production"
+                    ],
+                    "command": "webpack-cli build"
+                },
+                "configurations": {
+                    "development": {
+                        "args": [
+                            "node-env=development"
+                        ]
+                    }
+                }
+            },
+            "serve": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "cwd": "{projectRoot}",
+                    "args": [
+                        "--node-env=development"
+                    ],
+                    "command": "webpack-cli serve"
+                },
+                "syncGenerators": [
+                    "@nx/js:typescript-sync"
+                ]
+            },
+            "dev": {
+                "defaultConfiguration": "http",
+                "dependsOn": [
+                    "^build"
+                ],
+                "executor": "nx:run-commands",
+                "configurations": {
+                    "http": {
+                        "cwd": "{projectRoot}",
+                        "command": "nest build --webpack --webpackPath webpack-hmr.config.js --watch"
+                    },
+                    "https": {
+                        "cwd": "{projectRoot}",
+                        "command": "nest build --webpack --webpackPath webpack-hmr.config.js --watch"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,76 @@
+networks:
+    proxy:
+        ipam:
+            driver: default
+            config:
+                - subnet: 10.5.0.0/16
+
+services:
+    api:
+        container_name: saas-starter-api
+        restart: unless-stopped
+        links:
+            - web
+        build:
+            context: .
+            dockerfile: "apps/api/Dockerfile"
+        entrypoint: ["node", "main.js"]
+        depends_on:
+            - db
+        environment:
+            PORT: ${NEXT_PUBLIC_API_PORT}
+        ports:
+            - "${NEXT_PUBLIC_API_PORT}:${NEXT_PUBLIC_API_PORT}"
+        expose:
+            - ${NEXT_PUBLIC_API_PORT}
+    web:
+        container_name: saas-starter-web
+        restart: unless-stopped
+        build:
+            context: .
+            dockerfile: "apps/web/Dockerfile"
+        environment:
+            PORT: ${WEB_PORT}
+        entrypoint: ["node", "server.js"]
+        ports:
+            - "${WEB_PORT}:${WEB_PORT}"
+        expose:
+            - ${WEB_PORT}
+    db:
+        container_name: saas-starter-db
+        image: postgis/postgis:15-3.3-alpine
+        restart: unless-stopped
+        environment:
+            - POSTGRES_USER=${DB_USER}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+            - POSTGRES_DB=${DB_NAME}
+        ports:
+            - "${DB_PORT}:${DB_PORT}"
+        expose:
+            - ${DB_PORT}
+    queue:
+        container_name: saas-starter-queue
+        image: redis
+        restart: unless-stopped
+        ports:
+            - "${REDIS_PORT}:${REDIS_PORT}"
+        expose:
+            - ${REDIS_PORT}
+    mailhog:
+        container_name: saas-starter-mailhog
+        image: mailhog/mailhog
+        restart: unless-stopped
+        ports:
+            - "1025:1025"
+            - "8025:8025"
+        expose:
+            - 1025
+            - 8025
+        volumes:
+            - ./mailhog.auth:/mailhog.auth:ro
+    test:
+        container_name: saas-starter-test
+        build:
+            context: .
+            target: test
+        entrypoint: ["npm run", "seed-and-test"]

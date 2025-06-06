@@ -1,0 +1,10 @@
+{
+    "VERIFY_EMAIL_SUBJECT": "Verify Email Address for SAAS STARTER",
+    "VERIFY_EMAIL_TITLE": "Almost done!",
+    "VERIFY_EMAIL_TEXT": "Click below to verify your SAAS STARTER account.\nOr, if this wasn't you, simply ignore this email.",
+    "VERIFY_EMAIL_BUTTON": "Verify email",
+    "RESET_PASSWORD_SUBJECT": "Reset your password",
+    "RESET_PASSWORD_TITLE": "Reset your password",
+    "RESET_PASSWORD_TEXT": "Use the below link to reset your password",
+    "RESET_PASSWORD_BUTTON": "Reset password"
+}

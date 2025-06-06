@@ -1,0 +1,10 @@
+{
+    "VERIFY_EMAIL_SUBJECT": "Confirm your setup-app account",
+    "VERIFY_EMAIL_TITLE": "Almost done!",
+    "VERIFY_EMAIL_TEXT": "Click below to verify your setup-app account.\nOr, if this wasn't you, simply ignore this email.",
+    "VERIFY_EMAIL_BUTTON": "Verify email",
+    "RESET_PASSWORD_SUBJECT": "Zurücksetzen deines Passworts",
+    "RESET_PASSWORD_TITLE": "Zurücksetzen deines Passworts",
+    "RESET_PASSWORD_TEXT": "Benutze diesen Link um dein Passwort zurückzusetzen",
+    "RESET_PASSWORD_BUTTON": "Passwort zurücksetzen"
+}

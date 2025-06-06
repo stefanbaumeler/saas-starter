@@ -1,0 +1,3 @@
+query QBackupCodes($id: String!) {
+    backupCodes(id: $id)
+}
